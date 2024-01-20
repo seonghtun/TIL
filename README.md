@@ -8,7 +8,7 @@ docker run options
 ```
 $ docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=<password> -d -p 3306:3306 mysql:latest
 ```
-###Mysql CLI 접속
+### Mysql CLI 접속
 ```
 $ mysql -U root -p
 ```
@@ -18,7 +18,7 @@ $ mysql -U root -p
 ```
 $ docker run -d -p 5432:5432 -e POSTGRES_PASSWORD="<YourStrong@Passw0rd>" --name PostgreSQL01 postgres
 ```
-###Postgresql CLI 접속
+### Postgresql CLI 접속
 ```
 $ psql -U postgres
 ```
