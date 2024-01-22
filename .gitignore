@@ -1,5 +1,7 @@
 #python
 .venv
+__pycache__
+db.sqlite3
 
 # nodejs
 node_modules
