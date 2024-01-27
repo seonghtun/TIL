@@ -2,7 +2,7 @@
 .venv
 __pycache__
 db.sqlite3
-
+*.jpg
 # nodejs
 node_modules
 package-lock.json
