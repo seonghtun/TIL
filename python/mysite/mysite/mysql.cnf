@@ -1,0 +1,7 @@
+[client]
+database = mydatabase 
+host = 192.168.219.195
+port = 3412
+user = mysql 
+password = qwer1234
+default-character-set = utf8
