@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <span>글 작성</span>
+    </nav>
+    <h1>post add</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label>제목</label>
+            <input type="text" name="title">
+        </div>
+        <div>
+            <label>내용</label>
+            <textarea name="content"></textarea>
+        </div>
+        <div>
+            <label>썸네일</label>
+            <input name="thumbnail" type="file">
+        </div>
+        <button type="submit">작성</button>
+    </form>
+</body>
+
+</html>

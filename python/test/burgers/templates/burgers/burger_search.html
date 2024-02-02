@@ -3,6 +3,12 @@
 
 <body>
     <h1>burgerking의 햄버거 검색화면 입니다.</h1>
+
+    <form method="GET">
+        <input type="text" name="keyword">
+        <button type="submit">검색</button>
+    </form>
+    <h2>검색 결과</h2>
     {% for burger in burgers %}
     <div>
         {{burger.name}}
