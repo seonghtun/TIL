@@ -1,8 +1,9 @@
 #python
-.venv
+.vertualenv
 __pycache__
 db.sqlite3
 *.jpg
+.venv
 # nodejs
 node_modules
 package-lock.json
