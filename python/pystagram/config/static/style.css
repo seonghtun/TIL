@@ -1398,8 +1398,21 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #666;
 }
 
+#tags {
+  margin-top: 80px;
+  margin-left: 20px;
+}
+
 .tags-header {
   margin-bottom: 10px;
+}
+
+.tags-header h2 {
+  font-weight: 400;
+}
+
+.tags-header div {
+  font-weight: 400;
 }
 
 /*# sourceMappingURL=style.css.map */
