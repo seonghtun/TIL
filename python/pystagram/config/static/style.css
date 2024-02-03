@@ -1072,6 +1072,11 @@ nav>a {
   margin-right: 10px;
 }
 
+nav>p {
+  font-weight: 400;
+  margin-right: 10px;
+}
+
 #container {
   margin-top: 60px;
   padding: 2vw;

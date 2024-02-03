@@ -16,11 +16,15 @@
         {% for post in posts %}
         {% if post.postimage_st.first and post.postimage_set.first.photo %}
         <div class="post-grid">
-            <img src="{{post.postimage_set.first.photo.url}}" alt="사진이 없습니다">
+            <a href="{% url 'posts:post_detail' post_id=post.id %}">
+                <img src="{{post.postimage_set.first.photo.url}}" alt="사진이 없습니다">
+            </a>
         </div>
         {% else %}
         <div class="post-grid">
-            <p> 사진이 비어 있네요 .. </p>
+            <a href="{% url 'posts:post_detail' post_id=post.id %}">
+                <p> 사진이 비어 있네요 .. </p>
+            </a>
         </div>
         {% endif %}
 

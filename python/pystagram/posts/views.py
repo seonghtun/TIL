@@ -5,6 +5,7 @@ from . import forms
 from django.views.decorators.http import require_POST
 from django.urls import reverse
 
+
 # Create your views here.
 def feeds(request):
     user = request.user
@@ -21,7 +22,6 @@ def feeds(request):
     comment_form = forms.CommentForm()
     context = {
         "posts": posts,
-        "user": user,
         "comment_form": comment_form,}
     return render(request,"posts/feeds.html", context)
 
@@ -42,9 +42,13 @@ def comment_add(request):
         # print(comment.content)
         # print(comment.user)
         # print(comment.post)
-
-        url = reverse("posts:feeds") + f"#post-{comment.post.id}"
-        return HttpResponseRedirect(url)
+        # if request.GET.get("next"):
+        #     url_next = request.GET.get("next")
+        # else :
+        #     url_next = reverse("posts:feeds") + f"#post-{comment.post.id}"
+        
+        url_next = request.GET.get('next')
+        return HttpResponseRedirect(url_next)
 
 @require_POST
 def comment_delete(request, comment_id):
@@ -77,6 +81,14 @@ def post_add(request):
                     post=post,
                     photo=image_file,
                 )
+
+            # "tags"에 전달된 문자열을 분리해 HashTag 생성
+            tag_string = request.POST.get("tags")
+            if tag_string:
+                tag_names = {tag_name.strip() for tag_name in tag_string.split(',')}
+                for tag_name in tag_names:
+                    tag, _ = HashTag.objects.get_or_create(name=tag_name)
+                    post.tags.add(tag)
             url = f"{reverse('posts:feeds')}#post-{post.id}"
             return HttpResponseRedirect(url)
     else:
@@ -99,3 +111,12 @@ def tags(request, tag_name):
     "posts" : posts,
     }
     return render(request, 'posts/tags.html', context)
+
+def post_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    comment_form = forms.CommentForm()
+    context = {
+        "post": post,
+        "comment_form" : comment_form,
+        }
+    return render(request, "posts/post_detail.html", context)

@@ -8,4 +8,5 @@ urlpatterns=[
     path("comment_delete/<int:comment_id>/", views.comment_delete, name="comment_delete"),
     path("post_add/", views.post_add, name="post_add"),
     path("tags/<str:tag_name>/",views.tags, name="tags"),
+    path("<int:post_id>/", views.post_detail, name="post_detail")
 ]
