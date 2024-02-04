@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from users.forms import LoginForm, SignupForm
 from users.models import User
@@ -57,3 +57,28 @@ def signup(request):
     # 2. GET 요청으로 빈 form이 생성된 경우 -> 빈 form이 사용자에게 보여진다.
     context = {"form": form}
     return render(request,"users/signup.html", context)
+
+def profile(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    context = {
+        "user" : user,
+    }
+    return render(request, "users/profile.html",context)
+
+def followers(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    relationships = user.follower_relationships.all()
+    context = {
+        "user" :user,
+        "relationships": relationships,
+    }
+    return render(request,"users/followers.html",context)
+
+def following(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    relationships = user.following_relationships.all()
+    context = {
+        "user" :user,
+        "relationships": relationships,
+    }
+    return render(request,"users/following.html",context)
