@@ -26,13 +26,14 @@ SECRET_KEY = 'django-insecure-f(g%v+58s23g!dx$4j-8^-esk*92$zts7t2jrvr4hdhcoh0f%f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.34.35.145']
 
 AUTH_USER_MODEL = 'users.USER'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'users',
     'config.apps.ConfigConfig',
     'posts',
@@ -54,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'pystgram.urls'
+ROOT_URLCONF = 'pystagram.urls'
 
 TEMPLATES = [
     {
@@ -72,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'pystgram.wsgi.application'
+WSGI_APPLICATION = 'pystagram.wsgi.application'
 
 
 # Database
@@ -104,6 +105,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.BasicAuthentication'
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ]
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
