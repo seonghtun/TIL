@@ -14,7 +14,7 @@
     </header>
     <div class="post-grid-container">
         {% for post in posts %}
-        {% if post.postimage_st.first and post.postimage_set.first.photo %}
+        {% if post.postimage_set.first and post.postimage_set.first.photo %}
         <div class="post-grid">
             <a href="{% url 'posts:post_detail' post_id=post.id %}">
                 <img src="{{post.postimage_set.first.photo.url}}" alt="사진이 없습니다">

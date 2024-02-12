@@ -1,0 +1,12 @@
+<form action="{% url 'users:follow' user_id=user.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-follow">
+        <!-- 이 Post 작성자가 이미 자신의 팔로잉 목록에 포함된 경우-->
+        {% if user in current_user.following.all %}
+        Unfollow
+        <!-- 이 Post의 작성자를 아직  팔로잉 하지 않은 경우 -->
+        {% else %}
+        follow
+        {% endif %}
+    </button>
+</form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth import authenticate, login, logout
 from users.forms import LoginForm, SignupForm
 from users.models import User
@@ -61,9 +61,12 @@ def signup(request):
 
 def profile(request, user_id):
     user = get_object_or_404(User, id=user_id)
+    result = request.user == user
     context = {
         "user" : user,
+        "current_user" : request.user,
     }
+
     return render(request, "users/profile.html",context)
 
 def followers(request, user_id):
@@ -102,5 +105,6 @@ def follow(request, user_id):
     
     # 팔로우 토글 후 이동할 URL이 전달되었다면 해당 주소로,
     # 전달되지 않았다면 로그인 한 유저의 프로필 페이지로 이동
-    url_next = request.GET.get('next') or reverse("users:profile", args=[user.id])
+    url_next = request.GET.get('next') or reverse("users:profile", args=[user_id])
     return HttpResponseRedirect(url_next)
+

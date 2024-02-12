@@ -1,6 +1,6 @@
 <nav>
     <h1><a href="{% url 'posts:feeds' %}">Pystagram</a></h1>
-    <p>{{user.username}} 님</p>
+    <a href="{% url 'users:profile' user_id=user.id %}">{{user.username}} 님</a>
     <a href="{% url 'posts:post_add' %}">Add post</a>
     <a href="{% url 'users:logout' %}">Logout</a>
 </nav>
