@@ -1,0 +1,52 @@
+{% extends 'base_nav.html' %}
+
+{% block contents %}
+<div id="profile">
+    <div class="profile-container">
+        <div class="info">
+            <!-- 프로필 이미지 영역 -->
+            {% if user.profile_image %}
+            <div class="profile_img">
+                <img src="{{user.profile_image.url}}">
+            </div>
+            {% endif %}
+
+            <!-- 사용자 정보 영역 -->
+            <div class="info-texts">
+                <div class="profile-name-follow">
+                    <h1>{{user.username}}</h1>
+                    {% if not is_my_profile %}
+                    {% include 'follow_profile.html' %}
+                    {% endif %}
+                </div>
+
+
+                <div class="counts">
+                    <dl>
+                        <dt class="profile-dl-item">Posts</dt>
+                        <dd class="profile-dl-item">
+                            <a href="{% url 'users:profile' user_id=user.id %}">
+                                {{user.post_set.count}}
+                            </a>
+                        </dd>
+                        <dt class="profile-dl-item">Followers</dt>
+                        <dd class="profile-dl-item">
+                            <a href="{% url 'users:followers' user_id=user.id %}">
+                                {{user.followers.count}}
+                            </a>
+                        </dd>
+                        <dt class="profile-dl-item">Following</dt>
+                        <dd class="profile-dl-item">
+                            <a href="{% url 'users:following' user_id=user.id %}">
+                                {{user.following.count}}
+                            </a>
+                        </dd>
+                    </dl>
+                </div>
+                <p>{{ user.short_description }}</p>
+            </div>
+        </div>
+        {% block bottom_data %} {% endblock %}
+    </div>
+</div>
+{% endblock %}

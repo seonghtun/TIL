@@ -1,0 +1,37 @@
+{% extends 'base_slider.html' %}
+{% block contents %}
+<nav>
+    <h1>
+        <a href="{% url 'posts:feeds' %}">Pystagram</a>
+    </h1>
+    <a href="{% url 'posts:post_add'}">Add Post</a>
+    <a href="{% url 'users:logout' %}">Logout</a>
+</nav>
+<div id="tags">
+    <header class="tags-header">
+        <h2>#{{ tag_name }}</h2>
+        <div>게시물 {{ posts.count }}</div>
+    </header>
+    <div class="post-grid-container">
+        {% for post in posts %}
+        {% if post.postimage_set.first and post.postimage_set.first.photo %}
+        <div class="post-grid">
+            <a href="{% url 'posts:post_detail' post_id=post.id %}">
+                <img src="{{post.postimage_set.first.photo.url}}" alt="사진이 없습니다">
+            </a>
+        </div>
+        {% else %}
+        <div class="post-grid">
+            <a href="{% url 'posts:post_detail' post_id=post.id %}">
+                <p> 사진이 비어 있네요 .. </p>
+            </a>
+        </div>
+        {% endif %}
+
+        {% empty %}
+        <p> 검색된 게시물이 없습니다. </p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
